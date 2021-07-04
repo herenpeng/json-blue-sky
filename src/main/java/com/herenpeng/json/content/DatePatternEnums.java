@@ -1,10 +1,12 @@
 package com.herenpeng.json.content;
 
+import java.io.Serializable;
+
 /**
  * @author herenpeng
  * @since 2021-07-02 23:31
  */
-public enum DatePatternEnums {
+public enum DatePatternEnums implements Serializable {
 
     /**
      * 默认的日期格式化格式

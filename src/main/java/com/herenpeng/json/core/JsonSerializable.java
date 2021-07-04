@@ -1,6 +1,7 @@
 package com.herenpeng.json.core;
 
-import com.herenpeng.json.JsonHelper;
+import com.herenpeng.json.worker.JsonReader;
+import com.herenpeng.json.worker.JsonWriter;
 
 import java.util.Collection;
 import java.util.Map;
@@ -11,7 +12,6 @@ import java.util.Map;
  */
 public interface JsonSerializable {
 
-    JsonHelper jsonHelper = new JsonHelper();
 
     /**
      * 将Json字符串转换为Java对象
@@ -29,27 +29,4 @@ public interface JsonSerializable {
      */
     String write(Object object);
 
-    /**
-     * 根据 objectClass 字节码判断类型对象，获取对应的 Json 序列化实现类工具
-     *
-     * @param objectClass objectClass 字节码
-     * @return 对应的 Json 序列化实现类工具
-     */
-    static JsonSerializable getJsonSerializable(Class<?> objectClass) {
-        if (objectClass.isAssignableFrom(Collection.class)) {
-            return new CollectionSerializable();
-        }
-        if (objectClass.isArray()) {
-            return new ArraySerializable();
-        }
-        if (objectClass.isAssignableFrom(Map.class)) {
-            return new MapSerializable();
-        }
-        return new ObjectSerializable();
-    }
-
-    static JsonSerializable getJsonSerializable(Object object) {
-        Class<?> objectClass = object.getClass();
-        return getJsonSerializable(objectClass);
-    }
 }

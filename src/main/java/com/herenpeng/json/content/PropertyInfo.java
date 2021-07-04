@@ -1,5 +1,6 @@
 package com.herenpeng.json.content;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
@@ -8,7 +9,7 @@ import java.lang.reflect.Method;
  * @author herenepeng
  * @since 2021-07-02 23:08
  */
-public class PropertyInfo {
+public class PropertyInfo implements Serializable {
 
     /**
      * 属性名称
@@ -22,11 +23,6 @@ public class PropertyInfo {
      * 写方法，比如set方法
      */
     private Method writeMethod;
-
-    /**
-     * 属性字节码
-     */
-    private Class<?> propertyClass;
 
     public String getName() {
         return name;
@@ -52,11 +48,4 @@ public class PropertyInfo {
         this.writeMethod = writeMethod;
     }
 
-    public Class<?> getPropertyClass() {
-        return propertyClass;
-    }
-
-    public void setPropertyClass(Class<?> propertyClass) {
-        this.propertyClass = propertyClass;
-    }
 }
